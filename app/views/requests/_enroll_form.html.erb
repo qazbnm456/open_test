@@ -1,0 +1,11 @@
+<div id="enroll_form">
+  <% if @user.enroll?(@request.id) %>
+      <% if @user.request_permit?(@request.id) %>
+        <%= render 'permission' %>
+      <% else %>
+        <%= render 'unenroll' %>
+      <% end %>
+  <% else %>
+      <%= render 'enroll' %>
+  <% end %>
+</div>

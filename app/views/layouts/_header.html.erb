@@ -1,0 +1,60 @@
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-menu">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/">
+            <div class="navbar-brand">
+              <div class="navbar-brand-logo pull-left">
+                <div id="bolb">
+                  <p id="OT">O<span>P</span>EN</p><p id="sub">T<span>e</span><span>st</span></p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="navbar-collapse collapse navbar-warning-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><%= link_to "Home", root_path %></li>
+            <li><%= link_to "Requests", request_path %></li>
+            <li><%= link_to "Help", help_path %></li>
+            <% if user_signed_in? %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle withripple" data-toggle="dropdown">
+                  <%= current_user.name %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to  profiles_path do %>
+                      <i class="icon-user"></i>
+                      profile
+                  <% end %></li>
+                  <li><%= link_to  edit_user_registration_path do %>
+                    <i class="icon-user"></i>
+                    Edit profile
+                  <% end %></li>
+                  <% if current_user.admin? %>
+                    <% if can? :access, :rails_admin %>
+                      <li><%= link_to rails_admin_path do %>
+                        <i class="icon-pencil"></i>
+                          Admin
+                        <% end %></li>
+                      <% end %>
+                  <% end %>
+                  <li class="divider"></li>
+                    <li><%= link_to  logout_path do %>
+                      <i class="icon-off"></i>
+                        Log out
+                    <% end %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Log in", login_path %></li>
+            <% end %>
+          </ul>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,36 @@
+$( "#error" ).html("<%= escape_javascript(render('shared/error_messages', :object => @bug)) %>")
+$( ":submit" ).val("提交")
+
+<% if @request.nil? %>
+
+  $( "#error" ).append( $( "<div id='error_explanation'>\
+                              <div class='alert alert-error'>\
+                                The form contains 1 error.\
+                              </div>\
+                              <ul>\
+                                <li>* 眾測欄位請勿為空</li>\
+                              </ul>\
+                            </div>" ) );
+<% elsif @request.permits.first.status == "審核中" %>
+  $( "#error" ).append( $( "<div id='error_explanation'>\
+                              <div class='alert alert-error'>\
+                                The form contains 1 error.\
+                              </div>\
+                              <ul>\
+                                <li>* 您尚未通過此眾測要求</li>\
+                              </ul>\
+                            </div>" ) );
+<% elsif @sim == 1 %>
+  $( "#error" ).append( $( "<div id='error_explanation'>\
+                              <div class='alert alert-error'>\
+                                We hava found that: \
+                              </div>\
+                              <ul>\
+                                <li>* 已經有人提交過類似漏洞</li>\
+                              </ul>\
+                            </div>" ) );
+<% elsif !@bug.errors.any?%>
+  $( ":submit" ).val("已提交")
+  $( "#bugs" ).html("<%= escape_javascript(render('profiles/bug_list', :user_bugs => @user_bugs)) %>")
+<% end %>
+

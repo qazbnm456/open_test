@@ -1,0 +1,5 @@
+<%= form_for((@request),
+             remote: true) do |f| %>
+    <div><%= f.hidden_field :id %></div>
+    <%= f.submit "Apply", class: "btn btn-large btn-primary" %>
+<% end %>

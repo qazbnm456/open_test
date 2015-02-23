@@ -1,0 +1,19 @@
+<% if user_requests %>
+    <% user_requests.each do |re| %>
+        <div class="row">
+          <div class="wel1">
+            <div class="col-md-2">
+              <% if user.request_permit?(re.id) %>
+                審核通過</br>
+              <% else %>
+                審核中</br>
+              <% end %>
+            </div>
+            <div class="col-md-6 col-md-offset-1">
+              <%= re.title %> held by <%= re.client %></br>
+              <%= re.from %> ~ <%= re.to %></br>
+            </div>
+          </div>
+        </div>
+    <% end %>
+<% end %>

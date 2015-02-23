@@ -1,0 +1,6 @@
+<%= form_for((@request),
+             html: { method: :delete },
+             remote: true) do |f| %>
+    <div><%= f.hidden_field :id %></div>
+    <%= f.submit "Unapply", class: "btn btn-large btn-primary" %>
+<% end %>

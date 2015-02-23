@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="well col-md-8 col-md-offset-1">
+      <%= @bug.title %></br>
+      <%= @bug.url %></br>
+      <%= @bug.parameter_1 %></br>
+      <%= @bug.parameter_2 %></br>
+      <%= @bug.parameter_3 %></br>
+      <div class="progress active">
+        <div class="progress-bar" style="width: 100%"></div>
+      </div>
+      <div  id="content">
+        <%= sanitize @bug.description %>
+      </div>
+    </div>
+  </div>
+</div>
